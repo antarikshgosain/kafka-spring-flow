@@ -1,21 +1,20 @@
-package com.backend.kafka.stockservice.kafka;
+package com.backend.kafka.emailservice.kafka;
 
 import com.backend.kafka.basedomains.dto.OrderEvent;
-import org.apache.kafka.common.protocol.types.Field;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderConsumer {
+public class EmailConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderConsumer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailConsumer.class);
 
     @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(OrderEvent orderEvent){
-        LOGGER.info(String.format("Order Event Received (in stock-service): %s",orderEvent.toString()));
-        //TODO - save event data into Database
+        LOGGER.info(String.format("Order Event Received (in email-service): %s",orderEvent.toString()));
+        //TODO - send email to customer
     }
 
 }
